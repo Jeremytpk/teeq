@@ -1,0 +1,79 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Teeq User ID" },
+        "username": { "type": "string" },
+        "age": { "type": "integer" },
+        "gender": { "type": "string" },
+        "city": { "type": "string" },
+        "commune": { "type": "string" },
+        "quartier": { "type": "string" },
+        "bio": { "type": "string" },
+        "avatar": { "type": "string" },
+        "vibes": { "type": "array" },
+        "lastActive": { "type": "integer" }
+      },
+      "required": ["id", "username"]
+    },
+    "Like": {
+      "title": "Like",
+      "description": "User high-vibe match interest indicator",
+      "type": "object",
+      "properties": {
+        "fromId": { "type": "string" },
+        "toId": { "type": "string" },
+        "timestamp": { "type": "integer" }
+      },
+      "required": ["fromId", "toId"]
+    },
+    "Match": {
+      "title": "Match",
+      "description": "Interactive user match outcome",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "user1Id": { "type": "string" },
+        "user2Id": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "lastMessage": { "type": "string" }
+      },
+      "required": ["id", "user1Id", "user2Id"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Chat message inside a match channel",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "matchId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "timestampMs": { "type": "integer" }
+      },
+      "required": ["id", "matchId", "senderId", "text"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of all active user profiles"
+    },
+    "/likes/{likeId}": {
+      "schema": "Like",
+      "description": "Active user high-vibe likes"
+    },
+    "/matches/{matchId}": {
+      "schema": "Match",
+      "description": "User to user mutual matched records"
+    },
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Conversation messages inside matched streams"
+    }
+  }
+}
