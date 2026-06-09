@@ -72,6 +72,17 @@ async function startServer() {
 
   app.use(express.json());
 
+  // CORS middleware for cross-origin deployments (like Netlify)
+  app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    if (req.method === "OPTIONS") {
+      return res.sendStatus(200);
+    }
+    next();
+  });
+
   // 1. Healthcheck endpoint
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok" });
