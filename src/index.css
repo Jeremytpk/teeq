@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-neon-green: #7000FF; /* Electric Purple */
+  --color-neon-lime: #7000FF; /* Electric Purple */
+  --color-neon-pink: #FF5C00; /* Vibrant Orange */
+  --color-neon-magenta: #9E00FF; /* High Power Purple */
+  --color-brand-orange: #FF5C00; /* Vibrant Orange direct mapping */
+  --color-brand-purple: #7000FF; /* Electric Purple direct mapping */
+  --color-dark-bg: #0A0A0C; /* Coal Black */
+  --color-dark-card: #141417; /* Dark Slate Panel */
+  --color-dark-alt: #1a1a1f; /* Secondary Panel */
+  --color-dark-border: rgba(255, 255, 255, 0.1); /* Subtle white border */
+}
+
+/* Custom visual utilities for Vibrant Palette */
+@layer utilities {
+  .neon-border-green {
+    box-shadow: 0 0 10px rgba(112, 0, 255, 0.15), inset 0 0 5px rgba(112, 0, 255, 0.1);
+    border: 1px solid rgba(112, 0, 255, 0.4);
+  }
+  .neon-border-pink {
+    box-shadow: 0 0 10px rgba(255, 92, 0, 0.15), inset 0 0 5px rgba(255, 92, 0, 0.1);
+    border: 1px solid rgba(255, 92, 0, 0.4);
+  }
+  .neon-shadow-glow {
+    box-shadow: 0 0 20px rgba(255, 92, 0, 0.35);
+  }
+  .neon-pulse-cyan {
+    box-shadow: 0 0 15px rgba(112, 0, 255, 0.4);
+    animation: neonPulse 2s infinite alternate;
+  }
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 5px rgba(112, 0, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(112, 0, 255, 0.6);
+  }
+}

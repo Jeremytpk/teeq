@@ -1,0 +1,6 @@
+{
+  "name": "Teeq",
+  "description": "Rencontrez et vibez avec des personnes à proximité en RDC via des IDs uniques et matchmaking intuitif.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
