@@ -44,12 +44,22 @@ export default function App() {
 
     sendHeartbeat();
 
+    // Set up secondary periodic heartbeat interval (every 15 seconds) for fault-tolerant recovery
+    const heartbeatInterval = setInterval(() => {
+      sendHeartbeat();
+    }, 15000);
+
     // Set up rapid polling interval (every 3 seconds) for real-time interactions
     const pollInterval = setInterval(async () => {
       try {
         const res = await fetch(`/api/sync?userId=${encodeURIComponent(currentUser.id)}`);
         if (!res.ok) return;
         const data = await res.json();
+
+        // Safe auto-healing: if server got reloaded/emptied and we are not registered, send heartbeat immediately
+        if (data.registered === false) {
+          sendHeartbeat();
+        }
 
         // 1. Maintain list of other online devices
         setRealOnlineUsers(data.onlineUsers || []);
@@ -111,7 +121,10 @@ export default function App() {
       }
     }, 2800);
 
-    return () => clearInterval(pollInterval);
+    return () => {
+      clearInterval(pollInterval);
+      clearInterval(heartbeatInterval);
+    };
   }, [currentUser]);
 
   // Parse localStorage on mount

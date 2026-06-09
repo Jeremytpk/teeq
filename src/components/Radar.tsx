@@ -514,9 +514,14 @@ export default function Radar({ currentUser, onInstantMatch, matches, realOnline
                   <div className="flex items-center gap-3 text-left">
                     <span className="text-3xl bg-dark-bg p-2 rounded-xl border border-dark-border">{user.avatar}</span>
                     <div>
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-1.5 flex-wrap">
                         <h4 className="text-sm font-display font-black text-white leading-none">{user.username}</h4>
                         <span className="text-xs text-gray-400 font-bold">{user.age} ans</span>
+                        {!user.isSimulated && (
+                          <span className="text-[9px] bg-green-500/15 text-green-400 font-mono font-black px-1.5 py-0.5 rounded border border-green-500/30 flex items-center gap-1 animate-pulse uppercase tracking-wider shrink-0">
+                            <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" /> En direct
+                          </span>
+                        )}
                       </div>
                       <p className="text-[10px] text-neon-lime mt-1 font-mono uppercase font-bold tracking-wider">
                         {user.commune} • {user.quartier}

@@ -140,7 +140,7 @@ export default function Auth({ onLoginSuccess }: AuthProps) {
             setTimeout(() => {
               setLoading(false);
               onLoginSuccess(user);
-            }, 8000);
+            }, 800);
             return;
           }
         }

@@ -248,9 +248,14 @@ export default function SwipeCards({ currentUser, onInstantMatch, matches, realO
               <div className="flex-1 pt-4 sm:pt-5 p-4 sm:p-5 text-left flex flex-col justify-between relative overflow-hidden">
                 <div>
                   {/* Title & Age */}
-                  <div className="flex items-baseline gap-1.5">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <h3 className="text-lg sm:text-xl font-display font-black text-white">{activeUser.username}</h3>
                     <span className="text-xs sm:text-sm font-bold text-gray-400">{activeUser.age} ans</span>
+                    {!activeUser.isSimulated && (
+                      <span className="text-[9px] bg-green-500/15 text-green-400 font-mono font-black px-1.5 py-0.5 rounded border border-green-500/30 flex items-center gap-1 animate-pulse uppercase tracking-wider shrink-0">
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" /> En direct
+                      </span>
+                    )}
                   </div>
 
                   {/* Congolese location tags */}

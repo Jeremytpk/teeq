@@ -119,9 +119,12 @@ async function startServer() {
     const ACTIVE_TIMEOUT = 120 * 1000; // 2 minutes active window
 
     // Mark current user as active since they are syncing
+    let registered = true;
     if (state.users[userId]) {
       state.users[userId].lastActive = now;
       saveState(state);
+    } else {
+      registered = false;
     }
 
     // Retrieve active people (last active < 2 mins ago) excluding current user
@@ -168,6 +171,7 @@ async function startServer() {
       onlineUsers,
       matches: matchedProfiles,
       messages,
+      registered,
     });
   });
 
